@@ -34,7 +34,7 @@ addon_changelog = gAI('changelog')
 disclaimer = gAI('disclaimer')
 description = gAI('description')
 summary = gAI('summary')
-artPath = xbmc.translatePath(os.path.join(addon_path, 'art'))
+artPath = xbmc.translatePath(os.path.join(addon_path, 'noteart'))
 
 
 ## ################################################## ##

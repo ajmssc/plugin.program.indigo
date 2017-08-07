@@ -5,9 +5,9 @@ import re
 XHR = {'X-Requested-With': 'XMLHttpRequest'}
 Default_Headers = {'User-Agent' : 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36'}#   <<<<<add HTTP headers to a request,
 
-base_url = 'https://tvaddons.co/ad_api'
+base_url = 'http://tvaddons.co/ad_api'
 default_timeout = 10
-special_path = 'https://indigo.tvaddons.co/installer/sources'
+special_path = 'http://indigo.tvaddons.co/installer/sources'
 
 def search_addons(query):
     url = '/search_all'
