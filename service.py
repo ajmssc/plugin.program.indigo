@@ -98,7 +98,7 @@ if __name__ == '__main__':
         if kodi.get_setting('scriptblock') == 'true':
             kodi.log('Checking for Malicious scripts')
             BlocksUrl = base64.b64decode('aHR0cDovL2luZGlnby50dmFkZG9ucy5jby9ibG9ja2VyL2Jsb2NrZXIudHh0')
-            BlocksUrl = 'https://indigo.tvaddons.co/blocker/blocker.txt'
+            BlocksUrl = 'http://indigo.tvaddons.co/blocker/blocker.txt'
             req = urllib2.Request(BlocksUrl)
             req.add_header('User-Agent', 'Mozilla/5.0 (Linux; U; Android 4.2.2; en-us; AFTB Build/JDQ39) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30')
             try:

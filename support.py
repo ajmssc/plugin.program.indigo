@@ -11,7 +11,7 @@ from libs import kodi
 addon_id = kodi.addon_id
 
 BlocksUrl = base64.b64decode('aHR0cDovL2luZGlnby50dmFkZG9ucy5jby9ibG9ja2VyL2Jsb2NrZXIudHh0')
-BlocksUrl = 'https://indigo.tvaddons.co/blocker/blocker.txt'
+BlocksUrl = 'http://indigo.tvaddons.co/blocker/blocker.txt'
 
 
 def service_checks():

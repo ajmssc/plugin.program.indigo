@@ -43,10 +43,9 @@ dp = xbmcgui.DialogProgress()
 dialog = xbmcgui.Dialog()
 # <<<<<<<<<Common Variables>>>>>>>>>>>>>>>
 Keymaps_URL = base64.b64decode("aHR0cDovL2luZGlnby50dmFkZG9ucy4va2V5bWFwcy9jdXN0b21rZXlzLnR4dA==")
-Keymaps_URL = 'https://indigo.tvaddons.co/keymaps/customkeys.txt'
+Keymaps_URL = 'http://indigo.tvaddons.co/keymaps/customkeys.txt'
 KEYBOARD_FILE = xbmc.translatePath(os.path.join('special://home/userdata/keymaps/', 'keyboard.xml'))
 openSub = "https://github.com/stsrfbim/facial-recog/raw/master/development/service.subtitles.opensubtitles_by_opensubtitles/service.subtitles.opensubtitles_by_opensubtitles-5.1.14.zip"
-openQuas = "https://indigo.tvaddons.co/installer/sources/quasa44r.txt"
 burst_url = "http://burst.surge.sh/release/script.quasar.burst-0.5.8.zip"
 # tvpath = "https://oldgit.com/tvaresolvers/tva-common-repository/raw/master/zips/"
 tvpath = "https://github.com/zqfaen/tva-common/raw/master/zips/"
@@ -719,9 +718,7 @@ def make_lib(path, name):
     except:
         pass
     downloader.download(url, lib, dp)
-    
-    dialog.ok(addon_title,
-              "[COLOR gold]Download complete, File can be found at: [/COLOR][COLOR blue]" + lib + "[/COLOR]")
+    dialog.ok(addon_title, "[COLOR gold]Download complete, File can be found at: [/COLOR][COLOR blue]" + lib + "[/COLOR]")
 
 
 ##############
@@ -731,7 +728,6 @@ def ver_cmp(x, y):
             return -1
         elif int(i) > int(j):
             return 1
-    
     return 0
 
 
@@ -897,7 +893,7 @@ def ADDONINSTALL(name, url, description, filetype, repourl, Auto=False, v='', vO
             addonname = re.match('(.+)(-\d+\.)', addonname).group(1)
         except:
             pass
-        extract.all(lib, addonfolder, '')
+        # extract.all(lib, addonfolder, '')
         addon_able.set_enabled(name)
         xbmc.executebuiltin("XBMC.UpdateLocalAddons()")
         xbmc.executebuiltin("XBMC.UpdateAddonRepos()")
@@ -905,7 +901,7 @@ def ADDONINSTALL(name, url, description, filetype, repourl, Auto=False, v='', vO
             dataurl = repourl.split("repository", 1)[0]
 
             # Start Addon Depend Search ==================================================================
-            # Handles the addons/dependancies that have the version in the addon name
+            # Handles the addons/dependencies that have the version in the addon name
             try:
                 addonname = re.match('(.+)(-\d+\.)', addonname).group(1)
             except:
@@ -932,8 +928,8 @@ def ADDONINSTALL(name, url, description, filetype, repourl, Auto=False, v='', vO
         kodi.log("Installer: Repo is : " + repourl)
         if repourl:
             if 'None' not in repourl:
-                path = xbmc.translatePath(os.path.join('special://home/addons', 'packages'));
-                lib = os.path.join(path, name + '.zip')
+                path = xbmc.translatePath(os.path.join('special://home/addons', 'packages'))
+                # lib = os.path.join(path, name + '.zip')
                 files = repourl.split('/')
                 dependname = files[-1:]
                 dependname = str(dependname)
@@ -941,13 +937,15 @@ def ADDONINSTALL(name, url, description, filetype, repourl, Auto=False, v='', vO
                 nextname = reponame[:-1]
                 nextname = str(nextname).replace('[', '').replace(']', '').replace('"', '').replace('[', '')\
                     .replace("'", '').replace(".zip", '')
+                lib = os.path.join(path, nextname + '.zip')
                 kodi.log("REPO TO ENABLE IS  " + nextname)
                 try:
                     os.remove(lib)
                 except:
                     pass
                 addonfolder = xbmc.translatePath(os.path.join('special://', 'home/addons'))
-                download(repourl, lib, addonfolder, name)
+                # download(repourl, lib, addonfolder, name)
+                download(repourl, lib, addonfolder, nextname)
                 addon_able.set_enabled(nextname)
 
         addon_able.set_enabled(addonname)
@@ -992,7 +990,6 @@ def download(url, dest, addonfolder, name):
     dp.update(0, "Downloading: " + name, '', 'Please Wait')
     urllib.urlretrieve(url, dest, lambda nb, bs, fs, url=url: _pbhook(nb, bs, fs, url, dp))
     extract.all(dest, addonfolder, dp=None)
-
 
 
 def _pbhook(numblocks, blocksize, filesize, url, dp):

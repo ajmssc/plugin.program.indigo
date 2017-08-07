@@ -182,7 +182,7 @@ hubLogo = artp('tvaddons_logo')
 # hubLogo=artp('logo_notice.png')
 DefaultNoteImage = artp('blank1')
 DefaultSplitter = "|||"
-DefaultUrl = "https://indigo.tvaddons.co/notifications/news.txt"
+DefaultUrl = "http://indigo.tvaddons.co/notifications/news.txt"
 
 
 class MyWindow(xbmcgui.WindowDialog):  # xbmcgui.Window): ##xbmcgui.Window

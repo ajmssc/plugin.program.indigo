@@ -392,3 +392,18 @@ def source_change():
                 fil.write(str(b))
     except:
         pass
+
+
+def feed_change():
+    new_feed = userdata_path + "/RssFeeds.xml"
+    try:
+        with open(new_feed) as fi:
+            a = fi.read()
+            if 'TVADDONS' in a:
+                b = a.replace('TVADDONS', 'TVADDONSCO')
+            else:
+                return
+            with open(new_feed, "w") as fil:
+                fil.write(str(b))
+    except:
+        pass

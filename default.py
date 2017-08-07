@@ -58,6 +58,7 @@ def get_kversion():
     
 def main_menu():
     maintool.source_change()
+    maintool.feed_change()
     # ########## TRY POP ########
     if len(kodi.get_setting('notify')) > 0:
         kodi.set_setting('notify', str(int(kodi.get_setting('notify')) + 1))
@@ -101,7 +102,7 @@ def main_menu():
     # # Check for HUBRepo and install it
     try:
         if not os.path.exists(hubpath):
-            installer.HUBINSTALL('repository.xbmchub', 'https://github.com/tvaddonsco/tva-release-repo/raw/master/repository.xbmchub/', 'repository.xbmchub')
+            installer.HUBINSTALL('repository.xbmchub', 'http://github.com/tvaddonsco/tva-release-repo/raw/master/repository.xbmchub/', 'repository.xbmchub')
             xbmc.executebuiltin("XBMC.InstallAddon(%s)" % 'repository.xbmchub')
             addon_able.set_enabled("repository.xbmchub")
             xbmc.executebuiltin("XBMC.UpdateAddonRepos()")
@@ -111,7 +112,7 @@ def main_menu():
     # Check for Log Uploader and install it
     try:
         if not os.path.exists(uploaderpath):
-            installer.HUBINSTALL('script.tvaddons.debug.log', 'https://github.com/tvaddonsco/tva-release-repo/raw/master/script.tvaddons.debug.log/', 'script.tvaddons.debug.log')
+            installer.HUBINSTALL('script.tvaddons.debug.log', 'http://github.com/tvaddonsco/tva-release-repo/raw/master/script.tvaddons.debug.log/', 'script.tvaddons.debug.log')
             addon_able.set_enabled('script.tvaddons.debug.log')
             # xbmc.executebuiltin("InstallAddon(%s)" % 'script.tvaddons.debug.log')
             xbmc.executebuiltin("XBMC.UpdateLocalAddons()")
@@ -182,7 +183,7 @@ def what_sports():
 
 
 def rtmp_lib():
-    liblist = "https://indigo.tvaddons.co/librtmp/rtmplist.txt"
+    liblist = "http://indigo.tvaddons.co/librtmp/rtmplist.txt"
     try:
         link = OPEN_URL(liblist).replace('\n', '').replace('\r', '')
     except:
@@ -501,13 +502,6 @@ elif mode == 'updateaddons':
         xbmc.executebuiltin("UpdateAddonRepos")
         xbmc.executebuiltin("UpdateLocalAddons")    
     else: quit()
-    
-# ####  KEYMAPS  ###############
-elif mode == 'install_keymap':
-        installer.install_keymap(name, url)
-
-elif mode == 'uninstall_keymap':
-        installer.uninstall_keymap()
 
 elif mode == 'customkeys':
         installer.keymaps()
@@ -537,25 +531,23 @@ elif mode == 'call_wizard':
 #     print "" + url
 #     items = configwizard.WIZARDSTATUS(url)
 
-# #############  Installer  ############
+# ####  KEYMAPS  ###################################################################
+elif mode == 'install_keymap':
+    installer.install_keymap(name, url)
+
+elif mode == 'uninstall_keymap':
+    installer.uninstall_keymap()
+
+# #############  Installer  ##########################################################
 elif mode == 'call_installer':
     installer.MAININDEX()
 
 elif mode == 'lib_installer':
         installer.libinstaller(name, url)
 
-# ######  REJUVINATE  ###########
-elif mode=='call_rejuv':
-    import rejuv
-    rejuv.startup_rejuv()
-
-elif mode=='juvwizard':
-    import rejuv_run
-    rejuv_run.JUVWIZARD()
-
-# #####################################
-elif mode == 'EnableRTMP':
-    installer.EnableRTMP()
+elif mode == 'addoninstall':
+    #kodi.log("TRYING MODES")
+    installer.ADDONINSTALL(name, url, description, filetype, repourl)
 
 elif mode == 'interrepolist':
     items = installer.List_Inter_Addons(url)
@@ -587,19 +579,25 @@ elif mode == 'searchaddon':
 elif mode == 'getaddoninfo':
     installer.getaddoninfo(url, description, filetype)
 
-elif mode == 'InstallQuas':
-    installer.INSTALLQUASAR(url)
-
-elif mode == 'addoninstall':
-    #kodi.log("TRYING MODES")
-    installer.ADDONINSTALL(name, url, description, filetype, repourl)
-
 elif mode == 'urlzip':
     #kodi.log("TRYING MODES")
     installer.install_from_url()
 
 elif mode == 'adultlist':
     items = installer.List_Adult(url)
+
+# #######################################################################################
+elif mode == 'EnableRTMP':
+    installer.EnableRTMP()
+
+# ######  REJUVINATE  ###########
+elif mode=='call_rejuv':
+    import rejuv
+    rejuv.startup_rejuv()
+
+elif mode=='juvwizard':
+    import rejuv_run
+    rejuv_run.JUVWIZARD()
 
 elif mode == 'BrowseUrl':
     xbmc.executebuiltin("XBMC.System.Exec(%s)" % url)

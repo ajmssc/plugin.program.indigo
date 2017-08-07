@@ -16,8 +16,8 @@ from libs import kodi
 AddonTitle = kodi.addon.getAddonInfo('name')
 SiteDomain = 'TVADDONS.CO'
 
-wizlink = "https://indigo.tvaddons.co/wizard/updates.txt"
-cutslink = "https://indigo.tvaddons.co/wizard/shortcuts.txt"
+wizlink = "http://indigo.tvaddons.co/wizard/updates.txt"
+cutslink = "http://indigo.tvaddons.co/wizard/shortcuts.txt"
 
 
 # ========================== Help WIZARD ===============================================================================
