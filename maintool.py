@@ -349,11 +349,11 @@ def get_free_space_mb(dirname):
         df = subprocess.Popen(['df', dirname], stdout=subprocess.PIPE)
         output = df.communicate()[0]
         info = output.split('\n')[1].split()
-        if 'G' in info[1]:
+        if 'G' in info[1] or '1G-blocks' in output:
             multiplier = 1000000000.0
-        elif 'M' in info[1]:
+        elif 'M' in info[1] or '1M-blocks' in output:
             multiplier = 1000000.0
-        elif 'K' in info[1]:
+        elif 'K' in info[1] or '1K-blocks' in output:
             multiplier = 1000.0
         else:
             multiplier = 1.0
