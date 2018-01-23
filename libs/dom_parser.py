@@ -144,5 +144,4 @@ def parse_dom(html, name=u"", attrs={}, ret=False):
             lst = lst2
         ret_lst += lst
 
-    # log_utils.log("Done: " + repr(ret_lst), xbmc.LOGDEBUG)
     return ret_lst

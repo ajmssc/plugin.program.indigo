@@ -576,6 +576,27 @@ elif mode == 'addopensub':
 elif mode == 'searchaddon':
     installer.SEARCHADDON(url)
 
+elif mode == 'github_main':
+    installer.github_main(url)
+
+elif mode == 'github_history':
+    installer.github_history(url)
+
+elif mode == 'github_search':
+    installer.github_search(url)
+
+elif mode == 'github_results':
+    installer.github_results(url)
+
+elif mode == 'github_install':
+    installer.github_install(url)
+
+elif mode == 'github_instructions':
+    installer.github_instructions()
+
+elif mode == 'github_update':
+    installer.github_update()
+
 elif mode == 'getaddoninfo':
     installer.getaddoninfo(url, description, filetype)
 

@@ -23,6 +23,7 @@
         <setting visible="false" id="repositories" type="bool" label="Repositories Section" default="false"/>
         <setting visible="true" id="world" type="bool" label="International Section" default="true"/>
         <setting visible="true" id="adult" type="bool" label="Adult Section" default="false"/>
+        <setting visible="true" id="github_key" type="text" label="GitHub Personal API Key" default=""/>
         <setting visible="false" id="wizardran" type="bool" label="Wizard Ran" default="false"/>
         <setting visible="false" id="scriptblock" type="bool" label="Script Blocker" default="true"/>
     </category>
